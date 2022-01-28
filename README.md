@@ -1,2 +1,2 @@
 # ConsoleChess
- A console chess game made with C#
+A simple chess game in the C# console
