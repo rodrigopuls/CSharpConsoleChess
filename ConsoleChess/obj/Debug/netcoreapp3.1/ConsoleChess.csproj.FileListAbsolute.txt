@@ -1,0 +1,14 @@
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/bin/Debug/netcoreapp3.1/ConsoleChess
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/bin/Debug/netcoreapp3.1/ConsoleChess.deps.json
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/bin/Debug/netcoreapp3.1/ConsoleChess.runtimeconfig.json
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/bin/Debug/netcoreapp3.1/ConsoleChess.runtimeconfig.dev.json
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/bin/Debug/netcoreapp3.1/ConsoleChess.dll
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/bin/Debug/netcoreapp3.1/ConsoleChess.pdb
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.csproj.AssemblyReference.cache
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.AssemblyInfoInputs.cache
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.AssemblyInfo.cs
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.csproj.CoreCompileInputs.cache
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.dll
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.pdb
+/Users/rodrigopuls/Documents/Curso C#/ConsoleChess/ConsoleChess/obj/Debug/netcoreapp3.1/ConsoleChess.genruntimeconfig.cache

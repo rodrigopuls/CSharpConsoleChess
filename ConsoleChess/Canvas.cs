@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using Chessboard;
+using Game;
+
+namespace ConsoleChess
+{
+    public class Canvas
+    {
+
+        public static void PrintMatch(Match match)
+        {
+            PrintBoard(match.Board);
+            Console.WriteLine();
+            PrintCapturedPieces(match);
+            Console.WriteLine($"Match Turn: {match.Turn}");
+            Console.WriteLine($"Waiting Player: {match.CurrentPlayer}");
+        }
+        public static void PrintBoard(Board board)
+        {
+            for (int l = 0; l < board.Lines; l++)
+            {
+                Console.Write($"{8 - l} ");
+                for (int c = 0; c < board.Columns; c++)
+                {
+                    PrintPiece(board.Piece(l, c));
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  a b c d e f g h");
+        }
+
+        public static void PrintBoard(Board board, bool[,] possibleMoves)
+        {
+            ConsoleColor initialalBgColor = Console.BackgroundColor;
+
+            for (int l = 0; l < board.Lines; l++)
+            {
+                Console.Write($"{8 - l} ");
+                for (int c = 0; c < board.Columns; c++)
+                {
+                    Console.BackgroundColor = possibleMoves[l, c] ? ConsoleColor.DarkGray : initialalBgColor;
+                    PrintPiece(board.Piece(l, c));
+                    Console.BackgroundColor = initialalBgColor;
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("  a b c d e f g h");
+            Console.BackgroundColor = initialalBgColor;
+        }
+
+        public static BoardPosition ReadPieceMovimentInput()
+        {
+            string input = Console.ReadLine();
+            char column = input[0];
+            int line = int.Parse(input[1].ToString());
+
+            return new BoardPosition(column, line);
+        }
+
+        public static void PrintPiece(Piece piece)
+        {
+            if (piece == null)
+            {
+                Console.Write("- ");
+            }
+            else
+            {
+                if (piece.Color == Color.White)
+                {
+                    Console.Write(piece);
+                }
+                else
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(piece);
+                    Console.ForegroundColor = aux;
+                }
+                Console.Write(" ");
+            }
+        }
+
+        private static void PrintCapturedPieces(Match match)
+        {
+            Console.WriteLine("Captured pieces ---");
+            Console.Write("Whites: ");
+            PrintSet(match.CapturedPiecesByColor(Color.White));
+            Console.WriteLine("");
+            Console.Write("Blacks: ");
+            ConsoleColor originalColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintSet(match.CapturedPiecesByColor(Color.Black));
+            Console.ForegroundColor = originalColor;
+            Console.WriteLine();
+        }
+
+        private static void PrintSet(HashSet<Piece> pieces)
+        {
+            Console.Write($"[{string.Join(',', pieces)}]");
+        }
+    }
+}
