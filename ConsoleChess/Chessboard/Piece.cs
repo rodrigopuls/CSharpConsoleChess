@@ -20,7 +20,7 @@ namespace Chessboard
             MovementQuantity++;
         }
 
-        public void DerementMovementQuantity()
+        public void DecrementMovementQuantity()
         {
             MovementQuantity--;
         }

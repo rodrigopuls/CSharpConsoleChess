@@ -13,7 +13,7 @@ namespace ConsoleChess
             {
                 Match match = new Match();
 
-                while (!match.Ended)
+                while (!match.GameOver)
                 {
 
                     try
@@ -45,7 +45,7 @@ namespace ConsoleChess
                         Console.ReadKey();
                     }
                 }
-
+                Console.Clear();
                 Canvas.PrintBoard(match.Board);
             }
             catch (BoardException ex)

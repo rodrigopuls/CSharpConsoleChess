@@ -14,8 +14,22 @@ namespace ConsoleChess
             Console.WriteLine();
             PrintCapturedPieces(match);
             Console.WriteLine($"Match Turn: {match.Turn}");
-            Console.WriteLine($"Waiting Player: {match.CurrentPlayer}");
+
+            if (!match.GameOver)
+            {
+                Console.WriteLine($"Waiting Player: {match.CurrentPlayer}\n");
+                if (match.Checkmate)
+                {
+                    Console.WriteLine("CHECK!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("CHECKMATE!");
+                Console.WriteLine($"Winner: {match.CurrentPlayer}");
+            }
         }
+
         public static void PrintBoard(Board board)
         {
             for (int l = 0; l < board.Lines; l++)
@@ -84,16 +98,16 @@ namespace ConsoleChess
 
         private static void PrintCapturedPieces(Match match)
         {
-            Console.WriteLine("Captured pieces ---");
+            Console.WriteLine("### Captured pieces ###");
             Console.Write("Whites: ");
-            PrintSet(match.CapturedPiecesByColor(Color.White));
+            PrintSet(match.GetCapturedPiecesByColor(Color.White));
             Console.WriteLine("");
             Console.Write("Blacks: ");
             ConsoleColor originalColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            PrintSet(match.CapturedPiecesByColor(Color.Black));
+            PrintSet(match.GetCapturedPiecesByColor(Color.Black));
             Console.ForegroundColor = originalColor;
-            Console.WriteLine();
+            Console.WriteLine("\n");
         }
 
         private static void PrintSet(HashSet<Piece> pieces)
