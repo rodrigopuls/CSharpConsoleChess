@@ -26,10 +26,10 @@ namespace ConsoleChess
                         Position initial = Canvas.ReadPieceMovimentInput().ToPosition();
                         match.ValidateInitialPosition(initial);
 
-                        bool[,] possibleMoves = match.Board.Piece(initial).PossibleMoves();
+                        bool[,] GetPossibleMoves = match.Board.Piece(initial).GetAllPossibleMoves();
 
                         Console.Clear();
-                        Canvas.PrintBoard(match.Board, possibleMoves);
+                        Canvas.PrintBoard(match.Board, GetPossibleMoves);
 
                         Console.WriteLine();
                         Console.Write("Type final position: ");

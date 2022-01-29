@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Chessboard;
 using Game;
-
 namespace ConsoleChess
 {
     public class Canvas
@@ -44,7 +43,7 @@ namespace ConsoleChess
             Console.WriteLine("  a b c d e f g h");
         }
 
-        public static void PrintBoard(Board board, bool[,] possibleMoves)
+        public static void PrintBoard(Board board, bool[,] GetPossibleMoves)
         {
             ConsoleColor initialalBgColor = Console.BackgroundColor;
 
@@ -53,7 +52,7 @@ namespace ConsoleChess
                 Console.Write($"{8 - l} ");
                 for (int c = 0; c < board.Columns; c++)
                 {
-                    Console.BackgroundColor = possibleMoves[l, c] ? ConsoleColor.DarkGray : initialalBgColor;
+                    Console.BackgroundColor = GetPossibleMoves[l, c] ? ConsoleColor.DarkGray : initialalBgColor;
                     PrintPiece(board.Piece(l, c));
                     Console.BackgroundColor = initialalBgColor;
                 }
@@ -83,13 +82,13 @@ namespace ConsoleChess
             {
                 if (piece.Color == Color.White)
                 {
-                    Console.Write(piece);
+                    Console.Write(piece.ToUnicodeString());
                 }
                 else
                 {
                     ConsoleColor aux = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(piece);
+                    Console.Write(piece.ToUnicodeString());
                     Console.ForegroundColor = aux;
                 }
                 Console.Write(" ");

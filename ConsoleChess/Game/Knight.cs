@@ -2,16 +2,16 @@ using Chessboard;
 
 namespace Game
 {
-    public class King : Piece
+    public class Knight : Piece
     {
-        public King(Board board, Color color) : base(board, color)
+        public Knight(Board board, Color color) : base(board, color)
         {
 
         }
 
         public override string ToString()
         {
-            return "K";
+            return "H";
         }
 
         private bool CanMove(Position possiblePosition)
@@ -25,57 +25,50 @@ namespace Game
             bool[,] matrix = new bool[Board.Lines, Board.Columns];
             Position possiblePosition = new Position(0, 0);
 
-            // north
-            possiblePosition.UpdateValues(Position.Line - 1, Position.Column);
+            possiblePosition.UpdateValues(Position.Line - 1, Position.Column - 2);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // northeast
-            possiblePosition.UpdateValues(Position.Line - 1, Position.Column + 1);
+            possiblePosition.UpdateValues(Position.Line - 2, Position.Column - 1);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // east
-            possiblePosition.UpdateValues(Position.Line, Position.Column + 1);
+            possiblePosition.UpdateValues(Position.Line - 2, Position.Column + 1);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // southeast
-            possiblePosition.UpdateValues(Position.Line + 1, Position.Column + 1);
+
+            possiblePosition.UpdateValues(Position.Line - 1, Position.Column + 2);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // south
-            possiblePosition.UpdateValues(Position.Line + 1, Position.Column);
+            possiblePosition.UpdateValues(Position.Line + 1, Position.Column + 2);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // southwest
-            possiblePosition.UpdateValues(Position.Line + 1, Position.Column - 1);
+            possiblePosition.UpdateValues(Position.Line + 2, Position.Column + 1);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // west
-            possiblePosition.UpdateValues(Position.Line, Position.Column - 1);
+            possiblePosition.UpdateValues(Position.Line + 2, Position.Column - 1);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-            // northwest
-            possiblePosition.UpdateValues(Position.Line - 1, Position.Column - 1);
+            possiblePosition.UpdateValues(Position.Line + 1, Position.Column - 2);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
@@ -83,5 +76,6 @@ namespace Game
 
             return matrix;
         }
+
     }
 }
