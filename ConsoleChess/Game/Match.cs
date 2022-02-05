@@ -40,6 +40,28 @@ namespace Game
             if (capturedPiece != null)
                 CapturedPieces.Add(capturedPiece);
 
+            // special move king-side castling
+            if (piece is King && final.Column == initial.Column + 2)
+            {
+                Position rookInitial = new Position(initial.Line, initial.Column + 3);
+                Position rookFinal = new Position(initial.Line, initial.Column + 1);
+
+                Piece rook = Board.RemovePiece(rookInitial);
+                rook.IncrementMovementQuantity();
+                Board.InsertPiece(rook, rookFinal);
+            }
+
+            // special move queen-side castling
+            if (piece is King && final.Column == initial.Column - 2)
+            {
+                Position rookInitial = new Position(initial.Line, initial.Column - 4);
+                Position rookFinal = new Position(initial.Line, initial.Column - 1);
+
+                Piece rook = Board.RemovePiece(rookInitial);
+                rook.IncrementMovementQuantity();
+                Board.InsertPiece(rook, rookFinal);
+            }
+
             return capturedPiece;
         }
 
@@ -53,6 +75,28 @@ namespace Game
                 CapturedPieces.Remove(piece);
             }
             Board.InsertPiece(removedPiece, initial);
+
+            // special move king-side castling
+            if (piece is King && final.Column == initial.Column + 2)
+            {
+                Position rookInitial = new Position(initial.Line, initial.Column + 3);
+                Position rookFinal = new Position(initial.Line, initial.Column + 1);
+
+                Piece rook = Board.RemovePiece(rookFinal);
+                rook.DecrementMovementQuantity();
+                Board.InsertPiece(rook, rookInitial);
+            }
+
+            // special move queen-side castling
+            if (piece is King && final.Column == initial.Column - 2)
+            {
+                Position rookInitial = new Position(initial.Line, initial.Column - 4);
+                Position rookFinal = new Position(initial.Line, initial.Column - 1);
+
+                Piece rook = Board.RemovePiece(rookFinal);
+                rook.DecrementMovementQuantity();
+                Board.InsertPiece(rook, rookInitial);
+            }
         }
 
         public void PlayTurn(Position initial, Position final)
@@ -208,7 +252,7 @@ namespace Game
             InsertNewPiece('b', 1, new Knight(Board, Color.White));
             InsertNewPiece('c', 1, new Bishop(Board, Color.White));
             InsertNewPiece('d', 1, new Queen(Board, Color.White));
-            InsertNewPiece('e', 1, new King(Board, Color.White));
+            InsertNewPiece('e', 1, new King(Board, Color.White, this));
             InsertNewPiece('f', 1, new Bishop(Board, Color.White));
             InsertNewPiece('g', 1, new Knight(Board, Color.White));
             InsertNewPiece('h', 1, new Rook(Board, Color.White));
@@ -225,7 +269,7 @@ namespace Game
             InsertNewPiece('b', 8, new Knight(Board, Color.Black));
             InsertNewPiece('c', 8, new Bishop(Board, Color.Black));
             InsertNewPiece('d', 8, new Queen(Board, Color.Black));
-            InsertNewPiece('e', 8, new King(Board, Color.Black));
+            InsertNewPiece('e', 8, new King(Board, Color.Black, this));
             InsertNewPiece('f', 8, new Bishop(Board, Color.Black));
             InsertNewPiece('g', 8, new Knight(Board, Color.Black));
             InsertNewPiece('h', 8, new Rook(Board, Color.Black));
