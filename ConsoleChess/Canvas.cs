@@ -11,7 +11,7 @@ namespace ConsoleChess
         {
             PrintBoard(match.Board);
             Console.WriteLine();
-            PrintCapturedPieces(match);
+            Print_capturedPieces(match);
             Console.WriteLine($"Match Turn: {match.Turn}");
 
             if (!match.GameOver)
@@ -95,16 +95,16 @@ namespace ConsoleChess
             }
         }
 
-        private static void PrintCapturedPieces(Match match)
+        private static void Print_capturedPieces(Match match)
         {
             Console.WriteLine("### Captured pieces ###");
             Console.Write("Whites: ");
-            PrintSet(match.GetCapturedPiecesByColor(Color.White));
+            PrintSet(match.Get_capturedPiecesByColor(Color.White));
             Console.WriteLine("");
             Console.Write("Blacks: ");
             ConsoleColor originalColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            PrintSet(match.GetCapturedPiecesByColor(Color.Black));
+            PrintSet(match.Get_capturedPiecesByColor(Color.Black));
             Console.ForegroundColor = originalColor;
             Console.WriteLine("\n");
         }

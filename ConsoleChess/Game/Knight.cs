@@ -43,7 +43,6 @@ namespace Game
                 matrix[possiblePosition.Line, possiblePosition.Column] = true;
             }
 
-
             possiblePosition.UpdateValues(Position.Line - 1, Position.Column + 2);
             if (Board.IsValidPosition(possiblePosition) && CanMove(possiblePosition))
             {
