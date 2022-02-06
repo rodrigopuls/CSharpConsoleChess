@@ -141,6 +141,23 @@ namespace Game
                 throw new BoardException("You can't put yourself in checkmate!");
             }
 
+            Piece piece = Board.Piece(final);
+
+            // special move promotion
+            if (piece is Pawn)
+            {
+                if ((piece.Color == Color.White && final.Line == 0) || (piece.Color == Color.Black && final.Line == 7))
+                {
+                    piece = Board.RemovePiece(final);
+                    _boardPieces.Remove(piece);
+
+                    Piece queen = new Queen(Board, piece.Color);
+
+                    Board.InsertPiece(queen, final);
+                    _boardPieces.Add(queen);
+                }
+            }
+
             Checkmate = IsKingInCheckmate(Opponnent(CurrentPlayer));
 
             if (AnyCheckmateEscape(Opponnent(CurrentPlayer)))
@@ -152,8 +169,6 @@ namespace Game
                 Turn++;
                 ChangePlayerTurn();
             }
-
-            Piece piece = Board.Piece(final);
 
             // special move en passant
             if (piece is Knight && (final.Line == initial.Line - 2 || final.Line == initial.Line + 2))
