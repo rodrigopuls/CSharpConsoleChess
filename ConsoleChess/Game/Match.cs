@@ -205,7 +205,7 @@ namespace Game
             CurrentPlayer = CurrentPlayer == Color.White ? Color.Black : Color.White;
         }
 
-        public HashSet<Piece> Get_capturedPiecesByColor(Color color)
+        public HashSet<Piece> CapturedPiecesByColor(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
             foreach (var piece in _capturedPieces)
@@ -217,7 +217,7 @@ namespace Game
             return aux;
         }
 
-        public HashSet<Piece> Get_boardPiecesByColor(Color color)
+        public HashSet<Piece> BoardPiecesByColor(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
             foreach (var piece in _boardPieces)
@@ -225,7 +225,7 @@ namespace Game
                 if (piece.Color == color)
                     aux.Add(piece);
             }
-            aux.ExceptWith(Get_capturedPiecesByColor(color));
+            aux.ExceptWith(CapturedPiecesByColor(color));
             return aux;
         }
 
@@ -239,7 +239,7 @@ namespace Game
 
         private Piece GetKingByColor(Color color)
         {
-            foreach (var piece in Get_boardPiecesByColor(color))
+            foreach (var piece in BoardPiecesByColor(color))
             {
                 if (piece is King)
                     return piece;
@@ -255,7 +255,7 @@ namespace Game
             if (king == null)
                 throw new BoardException("Something went wrong!");
 
-            foreach (var piece in Get_boardPiecesByColor(Opponnent(color)))
+            foreach (var piece in BoardPiecesByColor(Opponnent(color)))
             {
                 bool[,] possibleMoves = piece.GetAllPossibleMoves();
                 if (possibleMoves[king.Position.Line, king.Position.Column])
@@ -273,7 +273,7 @@ namespace Game
                 return false;
             }
 
-            foreach (Piece piece in Get_boardPiecesByColor(color))
+            foreach (Piece piece in BoardPiecesByColor(color))
             {
                 bool[,] possibleMoves = piece.GetAllPossibleMoves();
                 for (int l = 0; l < Board.Lines; l++)

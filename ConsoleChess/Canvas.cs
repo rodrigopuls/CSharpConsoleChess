@@ -99,19 +99,24 @@ namespace ConsoleChess
         {
             Console.WriteLine("### Captured pieces ###");
             Console.Write("Whites: ");
-            PrintSet(match.Get_capturedPiecesByColor(Color.White));
+            PrintSet(match.CapturedPiecesByColor(Color.White));
             Console.WriteLine("");
             Console.Write("Blacks: ");
             ConsoleColor originalColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            PrintSet(match.Get_capturedPiecesByColor(Color.Black));
+            PrintSet(match.CapturedPiecesByColor(Color.Black));
             Console.ForegroundColor = originalColor;
             Console.WriteLine("\n");
         }
 
         private static void PrintSet(HashSet<Piece> pieces)
         {
-            Console.Write($"[{string.Join(',', pieces)}]");
+            Console.Write("[");
+            foreach (var piece in pieces)
+            {
+                Console.Write(piece.ToUnicodeString());
+            }
+            Console.Write("]");
         }
     }
 }
